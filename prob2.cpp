@@ -48,7 +48,7 @@ public:
             //if list 1 is not empty, first number for comparison is list1's val --> also increment to next node
             if(l1){
                 a = l1->val;
-                l1->next;
+                l1 = l1->next;
             }
             //if list 2 is not empty, sec number for comparison is list2's val--> also increment to next node
             if(l2){
