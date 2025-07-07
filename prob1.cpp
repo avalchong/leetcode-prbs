@@ -25,7 +25,7 @@
 #include <iostream>
 #include <vector>
 
-//solution firt run through
+// solution first run through 
 
 class Solution {
 public:
@@ -33,7 +33,7 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> sol = {};
         for(int i = 0; i < nums.size(); i++){
-            for(int j = 1; j < nums.size(); j++){
+            for(int j = i + 1; j < nums.size(); j++){
                if(nums[i] + nums[j] == target){
                     sol.push_back(i);
                     sol.push_back(j);
