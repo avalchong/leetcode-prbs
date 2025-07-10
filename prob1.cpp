@@ -31,8 +31,11 @@ class Solution {
 public:
 
     vector<int> twoSum(vector<int>& nums, int target) {
+        //create vector
         vector<int> sol = {};
+        //go through array number
         for(int i = 0; i < nums.size(); i++){
+            //check if next number in array aside from current number added up = target. if it does, add these indexes to solution vector and return.
             for(int j = i + 1; j < nums.size(); j++){
                if(nums[i] + nums[j] == target){
                     sol.push_back(i);
