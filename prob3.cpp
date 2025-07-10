@@ -29,14 +29,20 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        //set up initial solution value
         int sol = 0;
+        //create vector as long as ascii table
         vector<int> charCounter(128);
+        //secondary index counter
         int j = 0;
         for(int i = 0; i < s.length(); i++){
+            //add character to character counter vector
             charCounter[s[i]]++;
+            //while that character in index is counted, move to next position and subtract count of character there until you encounter same character again
             while(charCounter[s[i]] > 1){
                 charCounter[s[j++]]--;
             }
+            //find the max between current solution number and the number of numbers gone through - index of how last longest substring, + 1 for offset and set to new solution
             sol = max(sol, i - j + 1);
         }
         return sol;
