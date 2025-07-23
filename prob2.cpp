@@ -65,3 +65,69 @@ public:
 
     }
 };
+
+
+//variation: linked lists are numbers in normal form, not reversed.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    //reverse list function
+    ListNode* reverseList(ListNode* head){
+        ListNode* prev = nullptr;
+        ListNode* next = nullptr;
+        ListNode* curr = head;
+        //loop through original nonreversed list
+        while(curr){
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* reversedSol = new ListNode();
+        int carry = 0;
+        ListNode* curr = reversedSol;
+        //reverse lists
+        ListNode* reversedL1 = new ListNode();
+        reversedL1 = reverseList(l1);
+        ListNode* reversedL2 = new ListNode();
+        reversedL2 = reverseList(l2);
+
+        //continue loop as long as either a carry number exists, list one is not empty, or list two is not empty
+        while(carry || reversedL1 || reversedL2){
+            int a = 0;
+            int b = 0;
+            //if list 1 is not empty, first number for comparison is list1's val --> also increment to next node
+            if(reversedL1){
+                a = reversedL1->val;
+                reversedL1 = reversedL1->next;
+            }
+            //if list 2 is not empty, sec number for comparison is list2's val--> also increment to next node
+            if(reversedL2){
+                b = reversedL2->val;
+                reversedL2 = reversedL2->next;
+            }
+            int sum = a + b + carry;
+            //add numbers and add to list. if there is curry, account for that with modulo
+            curr->next = new ListNode(sum % 10);
+            curr = curr->next;
+            carry = sum / 10;
+        }
+        ListNode* sol = new ListNode();
+        reversedSol = reversedSol->next;
+        sol = reverseList(reversedSol);
+        return sol;
+
+    }
+};
